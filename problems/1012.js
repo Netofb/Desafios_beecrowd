@@ -3,16 +3,17 @@
 
 export function problem(lines){
 
-    const A = lines[0];
-    const B = lines[1];
-    const C = lines[2];
-    const pi = 3.14159;
 
-    let TRIANGULO = (Number(A) * Number(C)) / 2;
-    let CIRCULO = (Number(C) * Number(C)) * pi;
-    let TRAPEZIO = (Number(A) + Number(B)) * Number(C) / 2;
-    let QUADRADO = (Number(B) * Number(B));
-    let RETANGULO = (Number(A) * Number(B));
+    
+    const [A, B, C] = lines[0].split(' ').map(Number);
+
+    const pi = 3.14159;
+    
+    const TRIANGULO = (A * C) / 2;
+    const CIRCULO = pi * C * C;
+    const TRAPEZIO = ((A + B) * C) / 2;
+    const QUADRADO = B * B;
+    const RETANGULO = A * B;
     
     console.log(`TRIANGULO: ${TRIANGULO.toFixed(3)}`);
     console.log(`CIRCULO: ${CIRCULO.toFixed(3)}`);
@@ -20,9 +21,8 @@ export function problem(lines){
     console.log(`QUADRADO: ${QUADRADO.toFixed(3)}`);
     console.log(`RETANGULO: ${RETANGULO.toFixed(3)}`);
     
-
+    
 }
-
 
 
 
