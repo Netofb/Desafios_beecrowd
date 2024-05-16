@@ -10,11 +10,11 @@ export function problem(lines){
 
     let quantidade1 = parseInt(resto / valores[0]);
     console.log(`${quantidade1} ano(s)`);
-    resto = parseInt(resto % valores);
+    resto = parseInt(resto % valores[0]);
     let quantidade2 = parseInt(resto / valores[1]);
     console.log(`${quantidade2} mes(es)`);
-    resto = parseInt(resto % valores);
-    let quantidade3 = parseInt(resto / valores[3]);
+    resto = parseInt(resto % valores[1]);
+    let quantidade3 = parseInt(resto / valores[2]);
     console.log(`${quantidade3} dia(s)`);
 
     
