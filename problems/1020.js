@@ -28,6 +28,3 @@ export function problem(lines){
 
 
 	
-// 1 ano(s)
-// 1 mes(es)
-// 5 dia(s)
