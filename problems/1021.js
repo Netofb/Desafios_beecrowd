@@ -3,42 +3,26 @@ export function problem(lines){
 
     const valor = parseFloat(lines[0]);
 
-    console.log('NOTAS:')
-    let resto = valor;
-
-    const notas = [100, 50, 20, 10, 5, 2];
-    const moedas = [1, 0.50, 0.25, 0.10, 0.05, 0.01];
-
+    console.log('NOTAS:');
+    let resto = Math.floor(valor * 100); // Converter o valor para centavos
+    
+    const notas = [10000, 5000, 2000, 1000, 500, 200]; // Valores das notas em centavos
+    const moedas = [100, 50, 25, 10, 5, 1]; // Valores das moedas em centavos
+    
     for (let nota of notas) {
-        const quantidade = parseInt(resto / nota);
-        console.log(`${quantidade} nota(s) de R$ ${nota.toFixed(2)}`);
+        const quantidade = Math.floor(resto / nota);
+        console.log(`${quantidade} nota(s) de R$ ${(nota / 100).toFixed(2)}`);
         resto = resto % nota;
     }
-
     
-
-    console.log('MOEDAS:')
-
+    console.log('MOEDAS:');
+    
     for (let moeda of moedas) {
-        const quantidade = parseInt(resto / moeda);
-        console.log(`${quantidade} moeda(s) de R$ ${moeda.toFixed(2)}`);
+        const quantidade = Math.floor(resto / moeda);
+        console.log(`${quantidade} moeda(s) de R$ ${(moeda / 100).toFixed(2)}`);
         resto = resto % moeda;
     }
+    
 
 }
-/*
-NOTAS:
-5 nota(s) de R$ 100.00
-1 nota(s) de R$ 50.00
-1 nota(s) de R$ 20.00
-0 nota(s) de R$ 10.00
-1 nota(s) de R$ 5.00
-0 nota(s) de R$ 2.00
-MOEDAS:
-1 moeda(s) de R$ 1.00
-1 moeda(s) de R$ 0.50
-0 moeda(s) de R$ 0.25
-2 moeda(s) de R$ 0.10
-0 moeda(s) de R$ 0.05
-3 moeda(s) de R$ 0.01
-*/
+
