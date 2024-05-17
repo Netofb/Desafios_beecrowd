@@ -21,7 +21,7 @@ export function problem(lines){
 
     for (let moeda of moedas) {
         const quantidade = parseInt(resto / moeda);
-        console.log(`${quantidade} nota(s) de R$ ${moeda.toFixed(2)}`);
+        console.log(`${quantidade} moeda(s) de R$ ${moeda.toFixed(2)}`);
         resto = resto % moeda;
     }
 
