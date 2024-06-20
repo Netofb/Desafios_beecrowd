@@ -1,83 +1,41 @@
+var input = require('fs').readFileSync('/dev/stdin', 'utf8');
+var lines = input.trim().split('\n');
 
-// export function problem(lines){
-//     const [num1] = lines[0];
-//     const num = parseInt(num1);
+// Função para verificar se um ano é bissexto
+function isLeapYear(year) {
+    return (year % 4n === 0n && year % 100n !== 0n) || year % 400n === 0n;
+}
 
-// if(num % 4 === 0 || num % 100 !== 0 || num % 400 === 0){
-//     console.log('This is leap year.');
-    
-// }else if (num % 15 === 0){
-//     console.log('This is huluculu festival year.');
+// Função para verificar se um ano é divisível por um número
+function isDivisibleBy(year, divisor) {
+    return year % divisor === 0n;
+}
 
-// }else if(num % 55 === 0){
-//     console.log('This is bulukulu festival year.');
-
-// }else {
-//     console.log('This is an ordinary year.');
-// }
-// }
-const readline = require('readline');
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-});
-
-let firstOutput = true;
-
-rl.on('line', function(line) {
-    const num = parseInt(line.trim(), 10);
-    let isLeap = false;
-    let isHuluculu = false;
-    let isBulukulu = false;
-
-    if ((num % 4 === 0 && num % 100 !== 0) && (num % 400 === 0)) {
-        isLeap = true;
-    }
-    if (num % 15 === 0) {
-        isHuluculu = true;
-    }
-    if (isLeap && num % 55 === 0) {
-        isBulukulu = true;
-    }
-
-    if (!firstOutput) {
-        console.log('');
-    }
-    firstOutput = false;
+// Processar cada ano
+let first = true;
+lines.forEach((line) => {
+    const year = BigInt(line.trim()); // Converter para BigInt para manipular anos com muitos dígitos
+    let isLeap = isLeapYear(year);
+    let isHuluculu = isDivisibleBy(year, 15n);
+    let isBulukulu = isDivisibleBy(year, 55n) && isLeap;
+    let result = [];
 
     if (isLeap) {
-        console.log('This is leap year.');
+        result.push("This is leap year.");
     }
     if (isHuluculu) {
-        console.log('This is huluculu festival year.');
+        result.push("This is huluculu festival year.");
     }
     if (isBulukulu) {
-        console.log('This is bulukulu festival year.');
+        result.push("This is bulukulu festival year.");
     }
     if (!isLeap && !isHuluculu && !isBulukulu) {
-        console.log('This is an ordinary year.');
+        result.push("This is an ordinary year.");
     }
+
+    if (!first) {
+        console.log('');
+    }
+    console.log(result.join('\n'));
+    first = false;
 });
-
-
-/*
-ano que é divisível por 4 e não é divisível por 100
-divisíveis por 400 são também anos bissextos.
-acontece em anos divisíveis por 15
-acontece em anos divisíveis por 55 desde que também seja um ano bissexto
-
-
-
-
-
-This is leap year.
-
-This is leap year.
-This is huluculu festival year.
-
-This is huluculu festival year.
-
-This is an ordinary year.
-*/
